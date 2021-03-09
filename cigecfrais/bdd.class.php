@@ -42,7 +42,7 @@ class Bdd {
             $payeur = $_GET[$i."payeur"];
 
             //Permet de vérifier le type de carte utilisé si l'employé est payeur
-            if($payeur == true) {
+            if($payeur == "true") {
                 $typeCarte = $_GET["typeCarte"];
             } else {
                 $typeCarte = "  /  ";
