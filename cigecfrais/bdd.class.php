@@ -34,7 +34,7 @@ class Bdd {
         $this->saveFrais($prix, $fournisseur, $date, $nbRepas, $nbNuits, $immatriculation, $compteur, $photoID, $chantierID, $fraisTypeID);
 
         //Récupération de l'id du frais
-        $fraisID = $this->getFraisID();
+        $fraisID = $this->getFraisID($prix, $fournisseur, $date);
 
         //Sauvegarde des données de paiement
         for ($i=0; $i < $nbPersonnes; $i++) {
@@ -85,13 +85,13 @@ class Bdd {
         return $resultats;
     }
 
-    public function getFraisID() {
+    public function getFraisID($prix, $fournisseur, $date) {
         // Préparation de la requête SQL
-        $requete_sql = "SELECT MAX(id) FROM Frais";
+        $requete_sql = "SELECT id FROM Frais WHERE prix=? AND fournisseur=? AND date=?";
         $stmt = $this->dbh->prepare($requete_sql);
 
         // Exécution de la requête SQL et récupération de l'id
-        $stmt->execute();
+        $stmt->execute(array($prix, $fournisseur, $date));
         $resultats = $stmt->fetch();
         return $resultats[0];
     }
