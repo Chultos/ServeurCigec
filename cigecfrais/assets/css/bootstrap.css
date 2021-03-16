@@ -3047,15 +3047,16 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #007bff;
+  color: #212529;
   background-color: transparent;
 }
 
 .btn-link:hover {
-  color: #0056b3;
+  color: #212529;
   text-decoration: underline;
   background-color: transparent;
   border-color: transparent;
+  font-weight: bold;
 }
 
 .btn-link:focus, .btn-link.focus {
@@ -4734,13 +4735,13 @@ tbody.collapse.show {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #007bff;
+  color: #212529;
   background-color: #fff;
   border: 1px solid #dee2e6;
 }
 
 .page-link:hover {
-  color: #0056b3;
+  color: #212529;
   text-decoration: none;
   background-color: #e9ecef;
   border-color: #dee2e6;
@@ -4770,8 +4771,8 @@ tbody.collapse.show {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #212529;
+  border-color: #212529;
 }
 
 .page-item.disabled .page-link {

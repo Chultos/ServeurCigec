@@ -50,6 +50,26 @@ if ($_GET["ihm"] == "evolution"){
 	};
 }
 
+//Affichage de la page d'evolution des frais
+if ($_GET["ihm"] == "fraisEmploye"){
+	try {
+		// Connexion à la base de données
+		$bdd = new Bdd(CHEMIN_BDD);
+
+		//Employé choisi dans la liste de la page des employés
+		$employeID = $_GET["employeID"];
+
+		//Récupération des informations liées à cet employé
+		$employe = $bdd->recupUtilisateurAvecID($employeID);
+		$les_paiements = $bdd->recupPaiementsEmploye($employeID);
+	}
+	catch (PDOException $erreur) {
+		die("Erreur : ".$erreur->getMessage());
+	};
+
+	include("./ihm/fraisEmploye.php");
+}
+
 if ($_GET["api"] == "sauvegarderFrais"){
 	try {
 		// Connexion à la base de données

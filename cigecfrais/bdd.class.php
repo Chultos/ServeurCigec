@@ -108,13 +108,102 @@ class Bdd {
 
 	public function recupUtilisateurs() {
         // Préparation de la requête SQL
-        $requete_sql = "SELECT * FROM Employes";
+        $requete_sql = "SELECT * FROM Employes ORDER BY nom ASC";
+		$stmt = $this->dbh->prepare($requete_sql);
 
-		// Exécution de la requête SQL
-		$stmt = $this->dbh->query($requete_sql);
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
 
 		// Récupération des résultats
 		$resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $resultats;
+    }
+
+    public function recupUtilisateurAvecID($employeID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT * FROM Employes WHERE id=$employeID";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetch();
+        return $resultats;
+    }
+
+    public function recupPaiementsEmploye($employeID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT * FROM Paiement WHERE employeID=$employeID";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetchAll();
+        return $resultats;
+    }
+
+    public function recupFraisAvecID($fraisID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT * FROM Frais WHERE id=$fraisID";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetch();
+        return $resultats;
+    }
+
+    public function recupFraisType($fraisTypeID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT * FROM FraisType WHERE id=$fraisTypeID";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetch();
+        return $resultats;
+    }
+
+    public function recupChantierAvecID($chantierID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT * FROM Chantier WHERE id=$chantierID";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetch();
+        return $resultats["nom"];
+    }
+
+    public function recupLienPhotoAvecID($photoID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT * FROM Photos WHERE id=$photoID";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetch();
+        return $resultats["lien"];
+    }
+
+    public function ajouterEmploye($nom, $prenom, $numeroCarte) {
+        // Préparation de la requête SQL
+        $requete_sql = "INSERT INTO Employes(nom, prenom, numeroCarte) VALUES ( ?, ?, ? )";
+        $stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute(array($nom, $prenom, $numeroCarte));
         return $resultats;
     }
 }

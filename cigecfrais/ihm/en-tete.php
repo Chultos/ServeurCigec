@@ -11,10 +11,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Cigec Frais</title>
-    <link rel="icon" href="assets/logo-cigecx32.png">
+    <link rel="icon" href="assets/img/logo-cigecfrais_x32.png">
 
     <!-- Lien externe vers le CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
 
     <!-- Styles CSS complémentaires -->
     <style>
@@ -41,6 +41,19 @@
             padding: 3rem 1.5rem;
             text-align: center;
         }
+        .employeLink:link {
+            color: #212529;
+        }
+        .employeLink:visited {
+            color: #212529;
+        }
+        .employeLink:hover {
+            color: #212529;
+            font-weight: bold;
+        }
+        .clickableTHeader {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -50,8 +63,7 @@
 
         <!-- Le titre -->
         <a class="navbar-brand" href="/cigecfrais/?ihm=accueil">
-            <img src="assets/logo-entete.png" alt="Logo de l'entreprise" width="40.5" height="48,9">
-            Frais
+            <img src="assets/img/logo-cigecfrais.png" alt="Logo du site web" width="50" height="50">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">

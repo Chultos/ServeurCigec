@@ -10,8 +10,8 @@
     <table id="tableEmployes" class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">NOM Prénom</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +19,12 @@
                 // Création des lignes pour chaque employé
                 foreach($les_employes as $un_employe) {
                     echo "<tr>";
-                    echo "<th scope=\"row\">".$un_employe["id"]."</th>";
-                    echo "<td>".$un_employe["nom"]." ".$un_employe["prenom"]."</td>";
+                    echo "<td><a class=employeLink href=\"?ihm=fraisEmploye&employeID=".$un_employe["id"]."\"><button type=\"button\" class=\"btn btn-link\">".$un_employe["nom"]." ".$un_employe["prenom"]."</button></a></td>";
+                    echo "<td><a href=\"/cigecfrais/?ihm=editionEmploye&employeID=".$un_employe["id"]."\">";
+                    echo "<button class=\"btn btn-dark\">Editer</button></a>";
+                    echo " ";
+                    echo "<a href=\"/cigecfrais/?ihm=suppressionEmploye&employeID=".$un_employe["id"]."\">";
+                    echo "<button class=\"btn btn-danger\">Supprimer</button></a></td>";
                     echo "</tr>";
                 }
             ?>
