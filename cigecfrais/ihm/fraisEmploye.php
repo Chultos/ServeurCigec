@@ -8,7 +8,8 @@
     <?php 
         echo "<p>Page des frais de ".$employe["nom"]." ".$employe["prenom"]."</p>";
     ?>
-    <table id="sorTable" class="table">
+    <!-- Création du tableau avec possibilité de cliquer sur le colonnes pour trier les données -->
+    <table id="sorTable" class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th class="clickableTHeader" onclick="sortTable(0)" scope="col">Chantier</th>
@@ -23,13 +24,14 @@
         </thead>
         <tbody>
         <?php
+            //Création de lignes dans le tableau pour chaque Paiement
             foreach($les_paiements as $paiement) {
-                $frais = $bdd->recupFraisAvecID($paiement["fraisID"]);
                 //Remplissage du tableau
+                $frais = $bdd->recupFraisAvecID($paiement["fraisID"]);
                 echo "<tr>";
 
                 $chantier = $bdd->recupChantierAvecID($frais["chantierID"]);
-                echo "<td>".$chantier."</td>";
+                echo "<td>".$chantier["nom"]."</td>";
 
                 echo "<td>".$frais["fournisseur"]."</td>";
                 
