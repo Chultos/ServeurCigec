@@ -3,26 +3,34 @@
 ?>
 
 <body>
-    <script src="scripts/editionChantier_getValue.js"></script>
-    
-    <h1>Ajout de chantier <br><br><br></h1>
-    <?php
-        //Formulaire
-        echo "<form action=\"index.php\" method=\"GET\">";
-        echo    "<div class=\"form-group\">";
-        echo        "<label>Nom du chantier : </label>";
-        echo        "<input type=\"text\" name=\"nom\" class=\"form-control\" placeholder=\"Entrer un nom...\">";
-        echo        "<br><label>Numéro du chantier : </label>";
-        echo        "<input type=\"text\" name=\"numeroID\" class=\"form-control\" placeholder=\"Entrer un numéro...\">";
-        echo    "</div>";
+    <h1>Ajout d'un chantier<br><br><br></h1>
 
-        //Champ caché pour transmettre l'action au controleur
-        echo    "<input type=\"hidden\" name=\"api\" value=\"ajoutChantier\" />";
+    <!-- Formulaire -->
+    <form action="index.php" method="GET">
+        <div class="form-group row">
+            <div class="col"></div>
+            <label class="col-sm-3 col-form-label">Nom du chantier :</label>
+            <div class="col-sm-3">
+                <input type="text" name="nom" class="form-control" placeholder="Entrer un nom..." required>
+            </div>
+            <div class="col"></div><br><br>
+        </div>
 
-        //Bouton pour envoyer le formulaire
-        echo    "<button type=\"submit\" class=\"btn btn-primary\">Ajouter le chantier</button>";
-        echo "</form>";
-    ?>
+        <div class="form-group row">
+            <div class="col"></div>
+            <label class="col-sm-3 col-form-label">Numéro du chantier :</label>
+            <div class="col-sm-3">
+                <input type="text" name="numeroID" class="form-control" placeholder="Entrer un numéro..." required>
+            </div>
+            <div class="col"></div><br><br>
+        </div>
+
+    <!-- Champ caché pour transmettre l'action au contrôleur -->
+        <input type="hidden" name="action" value="ajoutChantier" />
+
+    <!-- Bouton pour envoyer le formulaire -->
+        <button type="submit" class="btn btn-primary">Ajouter le chantier</button>
+    </form>
 </body>
 
 <?php 

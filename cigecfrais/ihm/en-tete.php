@@ -1,8 +1,10 @@
 <?php
-/**
- * Cigec Frais (En-tete)
- * @author Teva Petorin
- */
+    /**
+    * Cigec Frais (En-tete)
+    * @author Teva Petorin
+    * @date 30/05/2021
+    * @version 0.5 (beta)
+    */
 ?>
 
 <!DOCTYPE html>
@@ -16,11 +18,11 @@
     <!-- Lien externe vers le CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.css">
 
-    <!-- Lien externe vers le JS -->
-    <link rel="javascript" href="assets/js/bootstrap.js">
-
     <!-- Lien externe jQuery -->
-    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    
+    <!-- Lien externe vers le JS -->
+    <script src="assets/js/bootstrap.js"></script>
 
     <!-- Styles CSS complémentaires -->
     <style>
@@ -46,20 +48,38 @@
         }
         .employeLink:link {
             color: #212529;
+            text-decoration: none;
+            font-weight: bold;
         }
         .employeLink:visited {
             color: #212529;
+            text-decoration: none;
         }
         .employeLink:hover {
             color: #212529;
+            text-decoration: underline;
+        }
+        .employeLink {
+            color: #212529;
+        }
+        .btn-link-modified {
+            color: #212529;
+        }
+        .btn-link-modified:hover {
+            color: #212529;
+            text-decoration: underline;
             font-weight: bold;
         }
-        .clickableTHeader {
+        .btn-link-modified:disabled, .btn-link-modified.disabled {
+            color: #212529;
+        }
+        .clickableTHeader:hover {
             cursor: pointer;
+            text-decoration: underline;
         }
         .form-select {
             display: inline-block;
-            width: 25%;
+            width: 100%;
             padding: 0.375rem 2.25rem 0.375rem 0.75rem;
             font-size: 1rem;
             font-weight: 400;
@@ -76,48 +96,51 @@
             -moz-appearance: none;
             appearance: none;
         }
-        .form-select:focus {
-            border-color: #86b7fe;
-            outline: 0;
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        }
-        .form-select[multiple], .form-select[size]:not([size="1"]) {
-            padding-right: 0.75rem;
-            background-image: none;
-        }
-        .form-select:disabled {
-            background-color: #e9ecef;
-        }
-        .form-select:-moz-focusring {
-            color: transparent;
-            text-shadow: 0 0 0 #212529;
+        table {
+            caption-side: bottom;
+            border-collapse: separate;
         }
     </style>
 </head>
 
 <body>
-    <!-- Barre de navigation avec le menu -->
+    <!-- Barre de navigation avec des menus -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
         <!-- Le titre -->
-        <a class="navbar-brand" href="/cigecfrais/?ihm=accueil">
+        <a class="navbar-brand ms-2" href="/cigecfrais/?ihm=accueil">
             <img src="assets/img/logo-cigecfrais.png" alt="Logo du site web" width="50" height="50">
         </a>
 
         <!-- Les menus -->
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item <?php if($_GET["ihm"] == "employes") {echo " active";}?>">
-                    <a class="nav-link" href="/cigecfrais/?ihm=employes">Employés</a>
-                </li>
-                <li class="nav-item <?php if($_GET["ihm"] == "chantiers") {echo " active";}?>">
-                    <a class="nav-link" href="/cigecfrais/?ihm=chantiers">Chantiers</a>
-                </li>
-                <li class="nav-item <?php if($_GET["ihm"] == "frais") {echo " active";}?>">
-                    <a class="nav-link" href="/cigecfrais/?ihm=frais">Frais</a>
-                </li>
-            </ul>
-        </div>
+        <?php
+            if ((isset($_SESSION["authentification"]) == TRUE) || ($_SESSION["authentification"] != 0)) {
+                echo "<div class=\"collapse navbar-collapse\" id=\"navbarsExampleDefault\">
+                    <ul class=\"navbar-nav mr-auto\">
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link "; if($_GET["ihm"] == "employes") {echo " active";} echo "\" href=\"/cigecfrais/?ihm=employes\">Employés</a>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link "; if($_GET["ihm"] == "chantiers") {echo " active";} echo "\" href=\"/cigecfrais/?ihm=chantiers\">Chantiers</a>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link "; if($_GET["ihm"] == "frais") {echo " active";} echo "\" href=\"/cigecfrais/?ihm=frais\">Frais</a>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link "; if($_GET["ihm"] == "recapitulatif") {echo " active";} echo "\" href=\"/cigecfrais/?ihm=recapitulatif\">Récapitulatif</a>
+                        </li>
+                    </ul>
+                </div>";
+                echo "<form class=\"form-inline\" action=\"index.php\" method=\"POST\">
+                        <!-- Champ caché pour transmettre l'action au contrôleur -->
+                        <input type=\"hidden\" name=\"action\" value=\"deconnexion\" />
+
+                        <!-- Bouton pour envoyer le formulaire -->
+                        <button class=\"btn btn-danger my-2 me-2 my-sm-0\" type=\"submit\">Déconnexion</button>
+                    </form>";
+            }
+        ?>
+        
     </nav>
 
     <!-- Conteneur principal de l'application web -->

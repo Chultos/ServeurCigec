@@ -3,7 +3,7 @@
 ?>
 
 <body>
-    <p>Bienvenue sur la page d'accueil de l'application Cigec Frais</p>
+    <p>Bienvenue sur l'interface web de Cigec Frais</p>
 </body>
 
 <?php 

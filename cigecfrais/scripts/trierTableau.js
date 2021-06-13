@@ -1,7 +1,7 @@
 //Fonction qui permet de cliquer sur les titres des colonnes pour trier un tableau
-function sortTable(n) {
+function trierTableau(colonneTri) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("sorTable");
+  table = document.getElementById("tableRecherche");
   switching = true;
   // Change le tri en mode croissant:
   dir = "asc";
@@ -16,8 +16,8 @@ function sortTable(n) {
       shouldSwitch = false;
 
       // Prends 2 éléments à comparer
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
+      x = rows[i].getElementsByClassName("td")[colonneTri];
+      y = rows[i + 1].getElementsByClassName("td")[colonneTri];
 
       // Vérifie si l'ordre des deux éléments est bon en fonction du mode de tri
       if (dir == "asc") {

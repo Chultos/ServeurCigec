@@ -139,6 +139,34 @@ class Bdd {
         return $resultats;
     }
 
+    //Fonction qui récupère les données de l'employé payeur grâce à l'id d'un frais
+    public function recupEmployePayeurIdAvecFraisID($fraisID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT employeID FROM Paiements WHERE fraisID=$fraisID AND payeur=\"true\"";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetch();
+        return $resultats["employeID"];
+    }
+
+    //Fonction qui récupère l'ID de plusieurs employés grâce à l'id d'un frais
+    public function recupEmployesIdAvecFraisID($fraisID) {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT employeID FROM Paiements WHERE fraisID=$fraisID";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $resultats;
+    }
+
     //Fonction qui récupère les paiements d'un employé grâce à son id
     public function recupPaiementsEmploye($employeID) {
         // Préparation de la requête SQL
@@ -213,6 +241,20 @@ class Bdd {
     public function recupChantiers() {
         // Préparation de la requête SQL
         $requete_sql = "SELECT * FROM Chantiers ORDER BY nom ASC";
+		$stmt = $this->dbh->prepare($requete_sql);
+
+        // Exécution de la requête SQL
+        $resultats = $stmt->execute();
+
+		// Récupération des résultats
+		$resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $resultats;
+    }
+
+    //Fonction qui récupère tout les chantiers
+    public function recupFournisseurs() {
+        // Préparation de la requête SQL
+        $requete_sql = "SELECT fournisseur FROM Frais ORDER BY fournisseur ASC";
 		$stmt = $this->dbh->prepare($requete_sql);
 
         // Exécution de la requête SQL
@@ -384,21 +426,9 @@ class Bdd {
     }
 
     //Fonction qui récupère les frais, des filtres supplémentaires peuvent etre utilisés 
-    public function recupFrais($nbFiltres=0, $chantierID=0, $fraisTypeID=0) {
+    public function recupFrais() {
         // Préparation de la requête SQL
-        if($nbFiltres == 0) {
-            $requete_sql = "SELECT * FROM Frais ORDER BY date DESC";
-        }
-        else if($nbFiltres == 1) {
-            if($chantierID == 0) {
-                $requete_sql = "SELECT * FROM Frais WHERE fraisTypeID=$fraisTypeID ORDER BY date DESC";
-            } else {
-                $requete_sql = "SELECT * FROM Frais WHERE chantierID=$chantierID ORDER BY date DESC";
-            }
-        }
-        else if($nbFiltres == 2) {
-            $requete_sql = "SELECT * FROM Frais WHERE fraisTypeID=$fraisTypeID AND chantierID=$chantierID ORDER BY date DESC";
-        }
+        $requete_sql = "SELECT * FROM Frais ORDER BY date DESC";
 
 		$stmt = $this->dbh->prepare($requete_sql);
 
